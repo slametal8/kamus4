@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 KamusAI 2025 - Next Generation Dictionary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.3);
+            --secondary: #8b5cf6;
+            --accent: #06d6a0;
+            --accent-glow: rgba(6, 214, 160, 0.3);
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1e1b4b 100%);
+            min-height: 100vh;
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--primary-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr 300px;
+            gap: 24px;
+            height: calc(100vh - 40px);
+        }
+
+        /* Glass Morphism Effect */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sidebar Menu */
+        .sidebar {
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 16px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin: 8px 0;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateX(8px);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        .menu-icon {
+            margin-right: 12px;
+            font-size: 18px;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .search-section {
+            margin-bottom: 32px;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 70px 20px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .result-section {
+            margin-top: 32px;
+        }
+
+        .word-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 24px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .word-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .word-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .word-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .phonetic {
+            color: var(--accent);
+            font-style: italic;
+            margin-left: 12px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .meaning-section {
+            margin: 20px 0;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .part-of-speech {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .definition {
+            margin: 12px 0;
+            padding-left: 16px;
+            border-left: 2px solid var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Right Sidebar Links */
+        .links-sidebar {
+            padding: 24px;
+        }
+
+        .links-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(6, 214, 160, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .link-item:hover::before {
+            left: 100%;
+        }
+
+        .link-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .link-icon {
+            margin-right: 12px;
+            font-size: 20px;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        /* Stats Section */
+        .quick-stats {
+            margin-top: 32px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .quick-stats h4 {
+            margin-bottom: 16px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .quick-stats p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow); }
+        }
+
+        .glowing {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .app-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+                gap: 16px;
+            }
+            
+            .sidebar, .links-sidebar {
+                order: -1;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="container">
+        <div class="app-wrapper">
+            <!-- Sidebar Menu -->
+            <div class="sidebar glass">
+                <div class="logo">
+                    <h1>🚀 KamusAI 2025</h1>
+                </div>
+                <div class="menu" id="menuContainer">
+                    <!-- Menu akan di-generate oleh JavaScript -->
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content glass">
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="🔍 Ketik kata dalam bahasa Inggris..." id="searchInput">
+                        <button class="search-btn" onclick="searchWord()">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+                </div>
+
+                <div class="result-section" id="resultSection">
+                    <div class="welcome-message">
+                        <h2>🌌 Selamat Datang di Kamus Modern 2025!</h2>
+                        <p>Teknologi AI terdepan untuk pembelajaran bahasa. Mulai dengan mengetik kata di atas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar Links -->
+            <div class="links-sidebar glass">
+                <h3 class="links-title">⚡ Link Cepat</h3>
+                <div class="links-list" id="linksContainer">
+                    <!-- Links akan di-generate oleh JavaScript -->
+                </div>
+
+                <div class="quick-stats">
+                    <h4>📊 Statistik Real-time</h4>
+                    <p>Kata dicari: <span id="searchCount">0</span></p>
+                    <p>Kata favorit: <span id="favoriteCount">0</span></p>
+                    <p>Riwayat: <span id="historyCount">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data menu dan links
+        const menuItems = [
+            {"name": "Beranda", "icon": "🏠", "id": "home"},
+            {"name": "Kamus", "icon": "📚", "id": "dictionary"},
+            {"name": "Favorit", "icon": "⭐", "id": "favorites"},
+            {"name": "Riwayat", "icon": "🕒", "id": "history"},
+            {"name": "Kategori", "icon": "📁", "id": "categories"},
+            {"name": "Belajar", "icon": "🎓", "id": "learn"},
+            {"name": "Quiz", "icon": "❓", "id": "quiz"},
+            {"name": "Pengaturan", "icon": "⚙️", "id": "settings"},
+            {"name": "Bantuan", "icon": "❔", "id": "help"},
+            {"name": "Tentang", "icon": "ℹ️", "id": "about"}
+        ];
+        
+        const externalLinks = [
+            {"name": "Kamus Online", "url": "https://kbbi.kemdikbud.go.id", "icon": "🌐"},
+            {"name": "Translate", "url": "https://translate.google.com", "icon": "🔤"},
+            {"name": "Sinonim", "url": "https://www.thesaurus.com", "icon": "🔄"},
+            {"name": "Grammar", "url": "https://www.grammarly.com", "icon": "📝"},
+            {"name": "Belajar Bahasa", "url": "https://www.duolingo.com", "icon": "🎯"},
+            {"name": "AI Assistant", "url": "https://chat.openai.com", "icon": "🤖"},
+            {"name": "E-Book", "url": "https://www.gutenberg.org", "icon": "📖"},
+            {"name": "Podcast", "url": "https://www.spotify.com", "icon": "🎧"},
+            {"name": "Forum", "url": "https://www.reddit.com/r/indonesia", "icon": "💬"},
+            {"name": "Cloud Save", "url": "https://drive.google.com", "icon": "☁️"}
+        ];
+
+        let searchCount = 0;
+        let favoriteCount = 0;
+
+        // Initialize UI
+        function initializeUI() {
+            // Generate menu
+            const menuContainer = document.getElementById('menuContainer');
+            menuItems.forEach((item, index) => {
+                const menuItem = document.createElement('div');
+                menuItem.className = `menu-item ${index === 0 ? 'active' : ''}`;
+                menuItem.setAttribute('data-tab', item.id);
+                menuItem.innerHTML = `
+                    <span class="menu-icon">${item.icon}</span>
+                    ${item.name}
+                `;
+                menuItem.addEventListener('click', () => switchTab(item.id));
+                menuContainer.appendChild(menuItem);
+            });
+
+            // Generate links
+            const linksContainer = document.getElementById('linksContainer');
+            externalLinks.forEach(link => {
+                const linkItem = document.createElement('a');
+                linkItem.href = link.url;
+                linkItem.target = '_blank';
+                linkItem.className = 'link-item';
+                linkItem.innerHTML = `
+                    <span class="link-icon">${link.icon}</span>
+                    ${link.name}
+                `;
+                linksContainer.appendChild(linkItem);
+            });
+
+            // Load stats
+            updateStats();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            
+            // Tab functionality bisa ditambah di sini
+            if (tabId === 'favorites') {
+                loadFavorites();
+            } else if (tabId === 'history') {
+                loadHistory();
+            }
+        }
+
+        async function searchWord() {
+            const word = document.getElementById('searchInput').value.trim();
+            if (!word) {
+                showNotification('⚠️ Masukkan kata yang ingin dicari!', 'warning');
+                return;
+            }
+
+            const resultSection = document.getElementById('resultSection');
+            resultSection.innerHTML = `
+                <div class="word-card glowing">
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                        <h3>Mencari "${word}"...</h3>
+                        <p>Menggunakan AI terbaru 2025</p>
+                    </div>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ word: word })
+                });
+
+                const data = await response.json();
+                displayResult(data, word);
+                searchCount++;
+                updateStats();
+            } catch (error) {
+                showNotification('❌ Gagal terhubung ke server', 'error');
+                resultSection.innerHTML = `
+                    <div class="word-card">
+                        <div class="error-message">
+                            <h3>❌ Connection Error</h3>
+                            <p>Periksa koneksi internet Anda</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function displayResult(data, originalWord) {
+            const resultSection = document.getElementById('resultSection');
+            
+            if (data.error) {
+                resultSection.innerHTML = `
+                    <div class="word-card fade-in">
+                        <div class="error-message">
+                            <h3>❌ "${originalWord}" tidak ditemukan</h3>
+                            <p>${data.error}</p>
+                            <p style="margin-top: 16px; color: var(--accent);">Coba kata lain seperti: hello, book, computer, python</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            data.forEach(entry => {
+                html += `
+                    <div class="word-card fade-in">
+                        <div class="word-header">
+                            <div>
+                                <h2 class="word-title">${entry.word}</h2>
+                                ${entry.phonetics && entry.phonetics[0] ? 
+                                  `<div class="phonetic">/${entry.phonetics[0].text || ''}/</div>` : ''}
+                            </div>
+                            <button class="search-btn" onclick="addToFavorites('${entry.word}')" style="font-size: 14px;">
+                                <i class="far fa-star"></i> Favorit
+                            </button>
+                        </div>
+                `;
+
+                entry.meanings.forEach((meaning, index) => {
+                    html += `
+                        <div class="meaning-section">
+                            <div class="part-of-speech">${meaning.partOfSpeech}</div>
+                            ${meaning.definitions.slice(0, 3).map((def, defIndex) => `
+                                <div class="definition">
+                                    <strong>📖 ${defIndex + 1}:</strong> ${def.definition}
+                                    ${def.example ? `<br><em style="color: var(--accent);">"${def.example}"</em>` : ''}
+                                    ${def.synonyms && def.synonyms.length > 0 ? 
+                                      `<br><strong style="color: var(--primary);">Sinonim:</strong> ${def.synonyms.slice(0, 3).join(', ')}` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            });
+
+            resultSection.innerHTML = html;
+            showNotification('✅ Kata berhasil ditemukan!', 'success');
+        }
+
+        function addToFavorites(word) {
+            fetch('/favorites', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ word: word })
+            })
+            .then(response => response.json())
+            .then(data => {
+                favoriteCount = data.favorites.length;
+                updateStats();
+                showNotification(`⭐ "${word}" ditambahkan ke favorit!`, 'success');
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('searchCount').textContent = searchCount;
+            document.getElementById('favoriteCount').textContent = favoriteCount;
+            document.getElementById('historyCount').textContent = searchCount; // Simplified
+        }
+
+        function showNotification(message, type) {
+            // Simple notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                background: ${type === 'error' ? 'rgba(239, 68, 68, 0.9)' : type === 'warning' ? 'rgba(245, 158, 11, 0.9)' : 'rgba(6, 214, 160, 0.9)'};
+                color: white;
+                border-radius: 12px;
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255,255,255,0.2);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                z-index: 1000;
+                animation: fadeIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Load favorites and history
+        async function loadFavorites() {
+            const response = await fetch('/favorites');
+            const data = await response.json();
+            favoriteCount = data.favorites.length;
+            updateStats();
+        }
+
+        async function loadHistory() {
+            const response = await fetch('/history');
+            const data = await response.json();
+            // Implement history display
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', initializeUI);
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchWord();
+            }
+        });
+
+        // Add some interactive effects
+        document.addEventListener('mousemove', function(e) {
+            const cards = document.querySelectorAll('.word-card, .menu-item, .link-item');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>
