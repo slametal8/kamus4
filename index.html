@@ -1,1055 +1,652 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 LexiAI 2025 - Quantum Dictionary</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>LexiAI Quantum DICTIONARY v3.0</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for high-quality icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --neon-blue: #00f3ff;
-            --neon-purple: #b967ff;
-            --neon-pink: #ff2a6d;
-            --cyber-green: #00ff9d;
-            --matrix-green: #00ff41;
-            --dark-space: #0a0a18;
-            --deep-space: #050510;
-            --hologram: rgba(255, 255, 255, 0.1);
-            --hologram-border: rgba(255, 255, 255, 0.2);
-            --glow-blue: 0 0 20px #00f3ff, 0 0 40px #00f3ff, 0 0 60px #00f3ff;
-            --glow-purple: 0 0 20px #b967ff, 0 0 40px #b967ff, 0 0 60px #b967ff;
-            --glow-pink: 0 0 20px #ff2a6d, 0 0 40px #ff2a6d, 0 0 60px #ff2a6d;
-            --glow-green: 0 0 20px #00ff9d, 0 0 40px #00ff9d, 0 0 60px #00ff9d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Menggunakan font Inter */
+        html { font-family: 'Inter', sans-serif; }
+        
+        /* Tema Quantum: Dark mode default */
         body {
-            font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(185, 103, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 42, 109, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, var(--deep-space) 0%, var(--dark-space) 100%);
-            min-height: 100vh;
-            color: white;
-            overflow-x: hidden;
-            position: relative;
+            background-color: #0d1117; /* Warna gelap GitHub */
         }
 
-        /* Matrix Rain Background */
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(10, 10, 24, 0.9) 0%, rgba(5, 5, 16, 0.95) 100%);
-            z-index: -2;
+        /* Styling spesifik untuk kartu */
+        .quantum-card {
+            background-color: #161b22; /* Slightly lighter dark background */
+            border: 1px solid #30363d; /* Border tipis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        /* Holographic Grid */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 95%, rgba(0, 243, 255, 0.03) 100%),
-                linear-gradient(180deg, transparent 95%, rgba(0, 243, 255, 0.03) 100%);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: gridMove 20s linear infinite;
+        /* Styling Input Search */
+        #search-input {
+            border: 2px solid #38a169; /* Warna hijau yang menonjol */
+            background-color: #0d1117;
+            color: #ffffff;
+            transition: all 0.2s ease-in-out;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        #search-input:focus {
+            border-color: #48bb78;
+            box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.5);
         }
-
-        /* Floating Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--neon-blue);
+        
+        /* Loader styles */
+        .loader {
+            border-top: 4px solid #38a169;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid #38a169;
+            border-left: 4px solid transparent;
             border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-            box-shadow: var(--glow-blue);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .app-wrapper {
-            display: grid;
-            grid-template-columns: 300px 1fr 320px;
-            gap: 30px;
-            height: calc(100vh - 40px);
-        }
-
-        /* Cyber Glass Effect */
-        .cyber-glass {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 24px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 20px rgba(0, 243, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cyber-glass::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 243, 255, 0.1), 
-                transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cyber-glass:hover::before {
-            left: 100%;
-        }
-
-        /* Sidebar Menu - Cyber Terminal */
-        .sidebar {
-            padding: 30px;
-            position: relative;
-        }
-
-        .sidebar::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 10%;
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--neon-blue), 
-                var(--neon-purple), 
-                transparent);
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            position: relative;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--neon-blue), 
-                var(--neon-purple), 
-                transparent);
-        }
-
-        .logo h1 {
-            font-size: 28px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: var(--glow-blue);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .logo .subtitle {
-            font-size: 12px;
-            color: var(--cyber-green);
-            margin-top: 8px;
-            letter-spacing: 3px;
-            text-shadow: var(--glow-green);
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 18px 20px;
-            margin: 12px 0;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid transparent;
-            background: rgba(0, 243, 255, 0.05);
-        }
-
-        .menu-item::before {
-            content: '▶';
-            position: absolute;
-            left: -20px;
-            color: var(--cyber-green);
-            transition: left 0.3s ease;
-            font-size: 12px;
-            text-shadow: var(--glow-green);
-        }
-
-        .menu-item:hover::before {
-            left: 10px;
-        }
-
-        .menu-item:hover {
-            background: rgba(0, 243, 255, 0.1);
-            border-color: var(--neon-blue);
-            transform: translateX(10px) scale(1.02);
-            box-shadow: var(--glow-blue);
-        }
-
-        .menu-item.active {
-            background: linear-gradient(135deg, 
-                rgba(0, 243, 255, 0.2), 
-                rgba(185, 103, 255, 0.2));
-            border-color: var(--neon-purple);
-            box-shadow: var(--glow-purple);
-        }
-
-        .menu-icon {
-            margin-right: 15px;
-            font-size: 20px;
-            filter: drop-shadow(0 0 10px currentColor);
             width: 24px;
-            text-align: center;
+            height: 24px;
+            animation: spin 1s linear infinite;
         }
 
-        /* Main Content - Holographic Display */
-        .main-content {
-            padding: 40px;
-            overflow-y: auto;
-            position: relative;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .main-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--neon-blue), 
-                var(--neon-purple), 
-                transparent);
-        }
-
-        .search-section {
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .search-box {
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 25px 80px 25px 30px;
-            border: 2px solid rgba(0, 243, 255, 0.3);
-            border-radius: 20px;
-            font-size: 20px;
-            font-family: 'Orbitron', monospace;
-            transition: all 0.4s ease;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            backdrop-filter: blur(20px);
-            box-shadow: 
-                inset 0 2px 10px rgba(0, 0, 0, 0.5),
-                0 0 20px rgba(0, 243, 255, 0.2);
-        }
-
-        .search-input::placeholder {
-            color: rgba(0, 243, 255, 0.6);
-            font-family: 'Segoe UI', system-ui;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--cyber-green);
-            box-shadow: 
-                inset 0 2px 20px rgba(0, 0, 0, 0.7),
-                0 0 40px var(--glow-green);
-            background: rgba(0, 255, 157, 0.05);
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--cyber-green), var(--neon-blue));
-            color: var(--dark-space);
-            border: none;
-            padding: 15px 25px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 800;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
-        }
-
-        .search-btn:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 0 30px var(--glow-green);
-        }
-
-        .search-btn:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-
-        .result-section {
-            margin-top: 40px;
-        }
-
-        /* Word Card - Holographic Display */
-        .word-card {
-            background: linear-gradient(135deg, 
-                rgba(0, 243, 255, 0.05) 0%, 
-                rgba(185, 103, 255, 0.05) 50%,
-                rgba(255, 42, 109, 0.05) 100%);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            padding: 30px;
-            border-radius: 24px;
-            margin-bottom: 25px;
-            box-shadow: 
-                0 8px 40px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            border-left: 4px solid var(--neon-blue);
-        }
-
-        .word-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                var(--neon-blue), 
-                var(--neon-purple), 
-                var(--neon-pink));
-        }
-
-        .word-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-        }
-
-        .word-title {
-            font-size: 42px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--neon-blue), var(--cyber-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: var(--glow-blue);
-            font-family: 'Orbitron', monospace;
-        }
-
-        .phonetic {
-            color: var(--cyber-green);
-            font-style: italic;
-            margin-left: 15px;
-            font-size: 18px;
-            text-shadow: var(--glow-green);
-            font-family: 'Orbitron', monospace;
-        }
-
-        .meaning-section {
-            margin: 25px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            border-left: 3px solid var(--neon-purple);
-            position: relative;
-        }
-
-        .meaning-section::before {
-            content: '█';
-            position: absolute;
-            left: 10px;
-            top: 20px;
-            color: var(--neon-purple);
-            font-size: 12px;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .part-of-speech {
-            font-weight: 800;
-            color: var(--neon-purple);
-            margin-bottom: 15px;
-            font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: var(--glow-purple);
-            font-family: 'Orbitron', monospace;
-        }
-
-        .definition {
-            margin: 15px 0;
-            padding-left: 25px;
-            border-left: 2px solid var(--cyber-green);
-            line-height: 1.7;
-            position: relative;
-        }
-
-        .definition::before {
-            content: '►';
-            position: absolute;
-            left: 10px;
-            color: var(--cyber-green);
-            font-size: 12px;
-        }
-
-        /* Right Sidebar - Quantum Links */
-        .links-sidebar {
-            padding: 30px;
-        }
-
-        .links-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: var(--glow-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            padding: 18px 20px;
-            margin: 10px 0;
-            background: rgba(0, 243, 255, 0.05);
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.4s ease;
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link-item::before {
-            content: '⚡';
-            position: absolute;
-            left: -20px;
-            transition: left 0.3s ease;
-        }
-
-        .link-item:hover::before {
-            left: 10px;
-        }
-
-        .link-item:hover {
-            background: rgba(185, 103, 255, 0.1);
-            border-color: var(--neon-purple);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: var(--glow-purple);
-        }
-
-        .link-icon {
-            margin-right: 15px;
-            font-size: 22px;
-            filter: drop-shadow(0 0 10px currentColor);
-            width: 25px;
-            text-align: center;
-        }
-
-        /* Stats Section - Digital Dashboard */
-        .quick-stats {
-            margin-top: 40px;
-            padding: 25px;
-            background: linear-gradient(135deg, 
-                rgba(0, 243, 255, 0.05) 0%, 
-                rgba(255, 42, 109, 0.05) 100%);
-            border-radius: 20px;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quick-stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                var(--neon-blue), 
-                var(--neon-pink));
-        }
-
-        .quick-stats h4 {
-            margin-bottom: 20px;
-            color: var(--cyber-green);
-            font-weight: 800;
-            text-shadow: var(--glow-green);
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .quick-stats p {
-            margin: 12px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Orbitron', monospace;
-            font-size: 14px;
-        }
-
-        .stat-value {
-            color: var(--neon-blue);
-            font-weight: 800;
-            text-shadow: var(--glow-blue);
-            background: rgba(0, 243, 255, 0.1);
-            padding: 5px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-        }
-
-        /* Animations */
-        @keyframes hologramIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(40px) scale(0.9) rotateX(10deg);
-                filter: blur(10px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1) rotateX(0);
-                filter: blur(0);
-            }
-        }
-
-        .hologram-in {
-            animation: hologramIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        @keyframes quantumGlow {
-            0%, 100% { 
-                box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
-            }
-            50% { 
-                box-shadow: 0 0 30px var(--neon-purple), 0 0 60px var(--neon-purple);
-            }
-        }
-
-        .quantum-glow {
-            animation: quantumGlow 3s ease-in-out infinite;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .app-wrapper {
-                grid-template-columns: 280px 1fr;
-                grid-template-rows: auto 1fr;
-            }
-            
-            .links-sidebar {
-                grid-column: 1 / -1;
-                order: 3;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .app-wrapper {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .container {
-                padding: 10px;
-            }
-            
-            .word-title {
-                font-size: 32px;
-            }
-            
-            .search-input {
-                font-size: 18px;
-                padding: 20px 70px 20px 20px;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 243, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            border-radius: 10px;
-            border: 2px solid var(--dark-space);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
-        }
-
-        /* Cyber Terminal Typing Effect */
-        .typing-text {
-            border-right: 2px solid var(--cyber-green);
-            animation: blink-cursor 1s infinite;
-        }
-
-        @keyframes blink-cursor {
-            0%, 50% { border-color: var(--cyber-green); }
-            51%, 100% { border-color: transparent; }
-        }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quantum-green': '#38a169',
+                        'quantum-blue': '#4c51bf',
+                        'quantum-dark': '#0d1117',
+                        'quantum-light': '#161b22',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <div class="matrix-bg"></div>
-    <div class="grid-overlay"></div>
-    <div class="particles" id="particlesContainer"></div>
-    
-    <div class="container">
-        <div class="app-wrapper">
-            <!-- Cyber Terminal Sidebar -->
-            <div class="sidebar cyber-glass">
-                <div class="logo">
-                    <h1>LexiAI Quantum</h1>
-                    <div class="subtitle">DICTIONARY v3.0</div>
+<body class="text-white min-h-screen">
+
+    <!-- Container Utama -->
+    <div id="app" class="p-4 sm:p-6 lg:p-8">
+        
+        <!-- Header: LexiAI Quantum DICTIONARY v3.0 -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-quantum-green">LexiAI Quantum</h1>
+            <p class="text-xl sm:text-2xl text-gray-400 mt-2">DICTIONARY <span class="text-quantum-blue">v3.0</span></p>
+        </header>
+
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+            <!-- Kolom Kiri: Sidebar & Menu -->
+            <div class="lg:col-span-1 space-y-6">
+                
+                <!-- Navigation Menu -->
+                <nav id="menu-container" class="quantum-card rounded-xl p-4">
+                    <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">🚀 Quantum Dashboard</h2>
+                    <!-- Menu items will be injected here -->
+                </nav>
+
+                <!-- Status System -->
+                <div class="quantum-card rounded-xl p-4">
+                    <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">⚠️ SYSTEM_OFFLINE</h2>
+                    <p class="text-sm text-red-500 flex items-center">
+                        <i data-lucide="scan" class="w-5 h-5 mr-2"></i> 
+                        <span id="system-status-message">Quantum connection disrupted</span>
+                    </p>
+                    <p class="text-xs text-gray-500 mt-2">Check network and try again</p>
                 </div>
-                <div class="menu" id="menuContainer">
-                    <!-- Menu akan di-generate oleh JavaScript -->
-                </div>
+                
+                <!-- Quantum Portals -->
+                <nav id="portal-container" class="quantum-card rounded-xl p-4">
+                    <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Quantum Portals</h2>
+                    <!-- External links will be injected here -->
+                </nav>
+
             </div>
 
-            <!-- Holographic Main Display -->
-            <div class="main-content cyber-glass">
-                <div class="search-section">
-                    <div class="search-box">
-                        <input type="text" class="search-input" placeholder="⟳ QUERY_ENTER_WORD.HERE" id="searchInput">
-                        <button class="search-btn" onclick="searchWord()">
-                            <i class="fas fa-bolt"></i> SCAN
+            <!-- Kolom Tengah: Search & Results -->
+            <div class="lg:col-span-3 space-y-6">
+                
+                <!-- Search Component -->
+                <div class="quantum-card rounded-xl p-6">
+                    <form id="search-form" class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                        <input type="text" id="search-input" placeholder="Neural Search..." 
+                               class="flex-grow rounded-lg p-3 text-lg focus:outline-none" required>
+                        <button type="submit" id="search-button"
+                                class="bg-quantum-green hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center disabled:opacity-50">
+                            <i data-lucide="search" class="w-5 h-5 mr-2"></i> 
+                            <span id="search-button-text">SCAN</span>
+                            <div id="loader" class="loader ml-3 hidden"></div>
                         </button>
-                    </div>
+                    </form>
                 </div>
 
-                <div class="result-section" id="resultSection">
-                    <div class="word-card quantum-glow">
-                        <div style="text-align: center; padding: 50px 20px;">
-                            <div style="font-size: 64px; margin-bottom: 20px;">🔮</div>
-                            <h2 style="color: var(--neon-blue); margin-bottom: 15px; text-shadow: var(--glow-blue);">QUANTUM DICTIONARY ONLINE</h2>
-                            <p style="color: var(--cyber-green); font-size: 18px; text-shadow: var(--glow-green);">
-                                SYSTEM_READY ▪ AI_SYNCED ▪ NEURAL_ACTIVE
-                            </p>
-                            <p style="margin-top: 20px; opacity: 0.8;">
-                                Enter English word to initiate quantum linguistic analysis
-                            </p>
+                <!-- Results and Content Area -->
+                <div id="content-display" class="space-y-6">
+                    
+                    <!-- Search Results (Initial State) -->
+                    <div id="search-results-card" class="quantum-card rounded-xl p-6 hidden">
+                        <div id="search-word" class="text-3xl font-bold mb-4 flex items-center justify-between">
+                            <span class="text-quantum-green">Word</span>
+                            <button id="favorite-button" onclick="toggleFavorite()" class="text-gray-500 hover:text-yellow-400 transition duration-200">
+                                <i data-lucide="star" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        <div id="phonetic-text" class="text-lg text-gray-400 mb-4">/fəʊˈnɛtɪk/</div>
+                        
+                        <div id="meanings-container" class="space-y-6">
+                            <!-- Meanings will be injected here -->
+                        </div>
+                        
+                        <div id="source-url" class="mt-6 pt-4 border-t border-gray-700 text-sm text-gray-500">
+                            Source: <a href="#" target="_blank" class="text-quantum-blue hover:underline">Quantum Cache</a>
                         </div>
                     </div>
+
+                    <!-- History and Favorites View -->
+                    <div id="secondary-view" class="quantum-card rounded-xl p-6 hidden">
+                        <h2 id="secondary-title" class="text-3xl font-bold mb-4 text-quantum-blue">Temporal Log</h2>
+                        <ul id="secondary-list" class="space-y-3">
+                            <!-- List items (History/Favorites) will be injected here -->
+                        </ul>
+                    </div>
+
+                    <!-- System Metrics -->
+                    <div class="quantum-card rounded-xl p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <h2 class="col-span-full text-xl font-semibold mb-2 border-b border-gray-700 pb-2">System Metrics</h2>
+                        <div class="p-3 bg-quantum-dark rounded-lg text-center">
+                            <p class="text-xl font-bold text-quantum-green" id="metric-analyzed">0</p>
+                            <p class="text-xs text-gray-400">Words Analyzed</p>
+                        </div>
+                        <div class="p-3 bg-quantum-dark rounded-lg text-center">
+                            <p class="text-xl font-bold text-quantum-green" id="metric-cache">0</p>
+                            <p class="text-xs text-gray-400">Quantum Cache</p>
+                        </div>
+                        <div class="p-3 bg-quantum-dark rounded-lg text-center">
+                            <p class="text-xl font-bold text-quantum-green" id="metric-load">0%</p>
+                            <p class="text-xs text-gray-400">Neural Load</p>
+                        </div>
+                        <div class="p-3 bg-quantum-dark rounded-lg text-center">
+                            <p class="text-xl font-bold text-quantum-green" id="metric-accuracy">99.8%</p>
+                            <p class="text-xs text-gray-400">AI Accuracy</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Notification Area (for system status and errors) -->
+                    <div id="notification-area" class="p-4 bg-red-800/30 border border-red-700 rounded-lg hidden">
+                        <p id="notification-message" class="text-red-300 font-semibold"></p>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- Quantum Links Panel -->
-            <div class="links-sidebar cyber-glass">
-                <h3 class="links-title">Quantum Portals</h3>
-                <div class="links-list" id="linksContainer">
-                    <!-- Links akan di-generate oleh JavaScript -->
-                </div>
-
-                <div class="quick-stats">
-                    <h4>System Metrics</h4>
-                    <p>Words Analyzed: <span class="stat-value" id="searchCount">0</span></p>
-                    <p>Quantum Cache: <span class="stat-value" id="favoriteCount">0</span></p>
-                    <p>Neural Load: <span class="stat-value" id="historyCount">0%</span></p>
-                    <p>AI Accuracy: <span class="stat-value">99.8%</span></p>
-                </div>
-            </div>
+            
         </div>
+
+        <!-- Footer -->
+        <footer class="mt-10 text-center text-gray-600 text-sm">
+            &copy; 2025 LexiAI Quantum. All Rights Reserved.
+        </footer>
+
     </div>
 
+    <!-- JavaScript Logic -->
     <script>
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particlesContainer');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = Math.random() * 100 + 'vh';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.background = i % 3 === 0 ? 'var(--neon-blue)' : 
-                                          i % 3 === 1 ? 'var(--neon-purple)' : 'var(--cyber-green)';
-                container.appendChild(particle);
+        const API_BASE_URL = window.location.origin;
+        const state = {
+            currentView: 'dictionary', // 'dictionary', 'favorites', 'history'
+            currentWord: null,
+            favorites: [],
+            history: [],
+            wordsAnalyzed: 0,
+            isFetching: false,
+            lastSearchData: null
+        };
+
+        // --- Utility Functions ---
+
+        /** Menampilkan pesan notifikasi di UI */
+        function showNotification(message, isError = true) {
+            const area = document.getElementById('notification-area');
+            const msg = document.getElementById('notification-message');
+            
+            // Atur warna berdasarkan jenis pesan
+            if (isError) {
+                area.className = 'p-4 bg-red-800/30 border border-red-700 rounded-lg';
+                msg.className = 'text-red-300 font-semibold';
+            } else {
+                area.className = 'p-4 bg-quantum-green/30 border border-quantum-green rounded-lg';
+                msg.className = 'text-quantum-green font-semibold';
+            }
+            
+            msg.textContent = message;
+            area.classList.remove('hidden');
+            
+            // Hilangkan setelah 5 detik (kecuali error API)
+            if (!isError || message.includes('API Kamus Eksternal')) {
+                setTimeout(() => area.classList.add('hidden'), 8000);
+            } else {
+                setTimeout(() => area.classList.add('hidden'), 5000);
             }
         }
 
-        // Data menu dan links
-        const menuItems = [
-            {"name": "Quantum Dashboard", "icon": "🚀", "id": "home"},
-            {"name": "Neural Search", "icon": "🔍", "id": "dictionary"},
-            {"name": "Quantum Cache", "icon": "⭐", "id": "favorites"},
-            {"name": "Temporal Log", "icon": "⏳", "id": "history"},
-            {"name": "Data Clusters", "icon": "📊", "id": "categories"},
-            {"name": "AI Training", "icon": "🧠", "id": "learn"},
-            {"name": "Cognitive Test", "icon": "⚡", "id": "quiz"},
-            {"name": "System Config", "icon": "⚙️", "id": "settings"},
-            {"name": "Support Matrix", "icon": "❓", "id": "help"},
-            {"name": "About QuantumAI", "icon": "🔮", "id": "about"}
-        ];
-        
-        const externalLinks = [
-            {"name": "Quantum KBBI", "url": "https://kbbi.kemdikbud.go.id", "icon": "🌐"},
-            {"name": "Neural Translate", "url": "https://translate.google.com", "icon": "🔤"},
-            {"name": "Synonym Matrix", "url": "https://www.thesaurus.com", "icon": "🔄"},
-            {"name": "Grammar AI", "url": "https://www.grammarly.com", "icon": "📝"},
-            {"name": "Language OS", "url": "https://www.duolingo.com", "icon": "🎯"},
-            {"name": "AI Core", "url": "https://chat.openai.com", "icon": "🤖"},
-            {"name": "Digital Library", "url": "https://www.gutenberg.org", "icon": "📖"},
-            {"name": "Audio Neural", "url": "https://www.spotify.com", "icon": "🎧"},
-            {"name": "Community Grid", "url": "https://www.reddit.com/r/indonesia", "icon": "💬"},
-            {"name": "Cloud Synapse", "url": "https://drive.google.com", "icon": "☁️"}
-        ];
+        /** Memperbarui status koneksi sistem di sidebar */
+        function updateSystemStatus(isHealthy) {
+            const statusCard = document.querySelector('.quantum-card:nth-of-type(2)');
+            const title = statusCard.querySelector('h2');
+            const message = document.getElementById('system-status-message');
 
-        let searchCount = 0;
-        let favoriteCount = 0;
-
-        // Initialize UI dengan efek futuristik
-        function initializeUI() {
-            createParticles();
-            
-            // Generate menu dengan delay hologram
-            const menuContainer = document.getElementById('menuContainer');
-            menuItems.forEach((item, index) => {
-                setTimeout(() => {
-                    const menuItem = document.createElement('div');
-                    menuItem.className = `menu-item hologram-in ${index === 0 ? 'active' : ''}`;
-                    menuItem.setAttribute('data-tab', item.id);
-                    menuItem.innerHTML = `
-                        <span class="menu-icon">${item.icon}</span>
-                        ${item.name}
-                    `;
-                    menuItem.addEventListener('click', () => switchTab(item.id));
-                    menuContainer.appendChild(menuItem);
-                }, index * 100);
-            });
-
-            // Generate links dengan efek bertahap
-            const linksContainer = document.getElementById('linksContainer');
-            externalLinks.forEach((link, index) => {
-                setTimeout(() => {
-                    const linkItem = document.createElement('a');
-                    linkItem.href = link.url;
-                    linkItem.target = '_blank';
-                    linkItem.className = 'link-item hologram-in';
-                    linkItem.innerHTML = `
-                        <span class="link-icon">${link.icon}</span>
-                        ${link.name}
-                    `;
-                    linksContainer.appendChild(linkItem);
-                }, index * 80);
-            });
-
-            updateStats();
-        }
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.menu-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
-            
-            // Efek suara tab (opsional)
-            playCyberSound();
-        }
-
-        function playCyberSound() {
-            // Implement sound effects jika diperlukan
-            console.log('🔊 Cyber sound effect played');
-        }
-
-        async function searchWord() {
-            const word = document.getElementById('searchInput').value.trim();
-            if (!word) {
-                showNotification('⚠️ QUERY_EMPTY ▪ ENTER_LINGUISTIC_DATA', 'warning');
-                return;
+            if (isHealthy) {
+                title.innerHTML = '<i data-lucide="shield-check" class="w-5 h-5 mr-2 inline-block"></i> SYSTEM_ONLINE';
+                title.className = 'text-xl font-semibold mb-4 border-b border-gray-700 pb-2 text-quantum-green';
+                message.textContent = 'Quantum connection established';
+                message.className = 'text-sm text-quantum-green flex items-center';
+            } else {
+                title.innerHTML = '⚠️ SYSTEM_OFFLINE';
+                title.className = 'text-xl font-semibold mb-4 border-b border-gray-700 pb-2';
+                message.textContent = 'Quantum connection disrupted';
+                message.className = 'text-sm text-red-500 flex items-center';
             }
+            // Re-render lucide icons
+            lucide.createIcons();
+        }
 
-            const resultSection = document.getElementById('resultSection');
-            resultSection.innerHTML = `
-                <div class="word-card quantum-glow">
-                    <div style="text-align: center; padding: 40px;">
-                        <div style="font-size: 48px; margin-bottom: 20px; animation: pulse 2s infinite;">🌀</div>
-                        <h3 style="color: var(--neon-blue); margin-bottom: 10px;">QUANTUM_ANALYSIS_ACTIVE</h3>
-                        <p style="color: var(--cyber-green); font-family: 'Orbitron', monospace;">
-                            SCANNING: "${word.toUpperCase()}"
-                        </p>
-                        <p style="margin-top: 15px; opacity: 0.7;">
-                            Accessing neural linguistic database...
-                        </p>
-                    </div>
-                </div>
-            `;
-
+        /** Mengambil data konfigurasi awal dan status kesehatan */
+        async function fetchInitialData() {
             try {
-                const response = await fetch('/search', {
+                const [dataRes, healthRes] = await Promise.all([
+                    fetch(`${API_BASE_URL}/data`),
+                    fetch(`${API_BASE_URL}/health`)
+                ]);
+
+                const data = await dataRes.json();
+                const health = await healthRes.json();
+
+                renderMenu(data.menuItems);
+                renderPortals(data.externalLinks);
+                updateSystemStatus(health.status === 'healthy');
+
+                // Ambil data riwayat dan favorit
+                await fetchFavorites();
+                await fetchHistory();
+
+                // Hitung Words Analyzed dari history
+                state.wordsAnalyzed = state.history.length;
+                document.getElementById('metric-analyzed').textContent = state.wordsAnalyzed;
+
+                // Tampilkan view awal (Kamus)
+                setActiveView('dictionary'); 
+
+            } catch (error) {
+                console.error("Gagal memuat data awal atau health check:", error);
+                updateSystemStatus(false);
+                showNotification("Gagal terhubung ke Backend (Flask). Pastikan server berjalan.", true);
+            }
+        }
+        
+        /** Render Menu di Sidebar */
+        function renderMenu(menuItems) {
+            const container = document.getElementById('menu-container');
+            let html = '<h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">🚀 Quantum Dashboard</h2>';
+            
+            menuItems.forEach(item => {
+                // Gunakan nama ikon Lucide yang sesuai
+                let iconName;
+                switch (item.id) {
+                    case 'home': iconName = 'home'; break;
+                    case 'dictionary': iconName = 'book-open'; break;
+                    case 'favorites': iconName = 'star'; break;
+                    case 'history': iconName = 'clock'; break;
+                    case 'categories': iconName = 'folder'; break;
+                    case 'learn': iconName = 'graduation-cap'; break;
+                    case 'quiz': iconName = 'help-circle'; break;
+                    case 'settings': iconName = 'settings'; break;
+                    case 'help': iconName = 'life-buoy'; break;
+                    case 'about': iconName = 'info'; break;
+                    default: iconName = 'rocket';
+                }
+                
+                html += `
+                    <a href="#" data-view="${item.id}" class="menu-item block p-3 rounded-lg text-gray-300 hover:bg-quantum-blue/20 hover:text-white transition duration-200 flex items-center mb-1">
+                        <i data-lucide="${iconName}" class="w-5 h-5 mr-3"></i>
+                        <span>${item.name}</span>
+                    </a>
+                `;
+            });
+            container.innerHTML = html;
+            
+            // Attach click listeners to menu items
+            document.querySelectorAll('.menu-item').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setActiveView(e.currentTarget.getAttribute('data-view'));
+                });
+            });
+
+            // Re-render lucide icons
+            lucide.createIcons();
+        }
+
+        /** Render External Links (Portals) */
+        function renderPortals(links) {
+            const container = document.getElementById('portal-container');
+            let html = '<h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Quantum Portals</h2>';
+            
+            links.forEach(link => {
+                let iconName;
+                switch (link.icon) {
+                    case '🌐': iconName = 'globe'; break;
+                    case '🔤': iconName = 'languages'; break;
+                    case '🔄': iconName = 'repeat-2'; break;
+                    case '📝': iconName = 'file-text'; break;
+                    case '🎯': iconName = 'compass'; break;
+                    case '🤖': iconName = 'bot'; break;
+                    case '📖': iconName = 'book'; break;
+                    case '🎧': iconName = 'headphones'; break;
+                    case '💬': iconName = 'message-circle'; break;
+                    case '☁️': iconName = 'cloud'; break;
+                    default: iconName = 'link';
+                }
+
+                html += `
+                    <a href="${link.url}" target="_blank" class="block p-3 rounded-lg text-gray-300 hover:bg-quantum-green/20 hover:text-white transition duration-200 flex items-center mb-1">
+                        <i data-lucide="${iconName}" class="w-5 h-5 mr-3"></i>
+                        <span>${link.name}</span>
+                    </a>
+                `;
+            });
+
+            container.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        // --- Core Dictionary Logic ---
+
+        /** Mengirim permintaan pencarian ke backend */
+        async function submitSearch(word) {
+            if (state.isFetching) return;
+            state.isFetching = true;
+            document.getElementById('loader').classList.remove('hidden');
+            document.getElementById('search-button-text').textContent = 'SCANNING...';
+            document.getElementById('search-button').disabled = true;
+            document.getElementById('notification-area').classList.add('hidden'); // Sembunyikan notif lama
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/search`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ word: word })
                 });
 
-                const data = await response.json();
-                displayResult(data, word);
-                searchCount++;
-                updateStats();
+                const result = await response.json();
+                
+                if (response.ok) {
+                    state.lastSearchData = result;
+                    renderSearchResults(word, result);
+                    state.wordsAnalyzed++;
+                    document.getElementById('metric-analyzed').textContent = state.wordsAnalyzed;
+                } else {
+                    // Penanganan Error dari Backend (Status 503 atau 400)
+                    showNotification(result.error || "Terjadi kesalahan saat mencari kata.", true);
+                    document.getElementById('search-results-card').classList.add('hidden');
+                    state.lastSearchData = null;
+                }
+
             } catch (error) {
-                showNotification('❌ NETWORK_ERROR ▪ QUANTUM_LINK_FAILED', 'error');
-                resultSection.innerHTML = `
-                    <div class="word-card">
-                        <div style="text-align: center; padding: 40px;">
-                            <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
-                            <h3 style="color: var(--neon-pink);">SYSTEM_OFFLINE</h3>
-                            <p>Quantum connection disrupted</p>
-                            <p style="margin-top: 15px; font-size: 14px; opacity: 0.7;">
-                                Check network and try again
-                            </p>
-                        </div>
-                    </div>
-                `;
+                console.error("Error during search fetch:", error);
+                showNotification("Terjadi kesalahan jaringan yang tidak terduga di frontend.", true);
+                document.getElementById('search-results-card').classList.add('hidden');
+                state.lastSearchData = null;
+            } finally {
+                state.isFetching = false;
+                document.getElementById('loader').classList.add('hidden');
+                document.getElementById('search-button-text').textContent = 'SCAN';
+                document.getElementById('search-button').disabled = false;
+                // Pastikan riwayat dan favorit diperbarui
+                await fetchFavorites();
+                await fetchHistory();
             }
         }
 
-        function displayResult(data, originalWord) {
-            const resultSection = document.getElementById('resultSection');
+        /** Render hasil pencarian */
+        function renderSearchResults(word, data) {
+            setActiveView('dictionary'); // Pastikan tampilan kembali ke Kamus
             
-            if (data.error) {
-                resultSection.innerHTML = `
-                    <div class="word-card hologram-in">
-                        <div style="text-align: center; padding: 40px;">
-                            <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
-                            <h3 style="color: var(--neon-pink);">NO_RESULTS_FOUND</h3>
-                            <p style="color: var(--cyber-green); margin: 15px 0;">
-                                QUERY: "${originalWord}"
-                            </p>
-                            <p>${data.error}</p>
-                            <div style="margin-top: 20px; padding: 15px; background: rgba(255,42,109,0.1); border-radius: 10px;">
-                                <p style="color: var(--neon-blue); font-size: 14px;">
-                                    SUGGESTED_QUERIES: hello, quantum, neural, future, tech
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
+            document.getElementById('search-results-card').classList.remove('hidden');
+            document.getElementById('secondary-view').classList.add('hidden');
+            
+            document.getElementById('search-word').querySelector('span').textContent = word;
+            
+            const phonetic = data[0].phonetic || (data[0].phonetics && data[0].phonetics.length > 0 ? data[0].phonetics[0].text : 'N/A');
+            document.getElementById('phonetic-text').textContent = phonetic;
+            
+            // Tombol favorit harus diperbarui
+            updateFavoriteButton(word);
+            
+            const meaningsContainer = document.getElementById('meanings-container');
+            meaningsContainer.innerHTML = ''; // Bersihkan konten lama
 
-            let html = '';
-            data.forEach(entry => {
-                html += `
-                    <div class="word-card hologram-in">
-                        <div class="word-header">
-                            <div>
-                                <h2 class="word-title">${entry.word}</h2>
-                                ${entry.phonetics && entry.phonetics[0] ? 
-                                  `<div class="phonetic">/${entry.phonetics[0].text || ''}/</div>` : ''}
-                            </div>
-                            <button class="search-btn" onclick="addToFavorites('${entry.word}')" style="font-size: 12px; padding: 10px 15px;">
-                                <i class="fas fa-atom"></i> CACHE
-                            </button>
-                        </div>
+            let meaningsHTML = '';
+            data[0].meanings.forEach((meaning, index) => {
+                meaningsHTML += `
+                    <div class="border-l-4 border-quantum-blue pl-4">
+                        <h3 class="text-xl font-semibold text-gray-300 flex items-center">
+                            <i data-lucide="data-cluster" class="w-5 h-5 mr-2"></i> ${meaning.partOfSpeech.toUpperCase()}
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-400 mt-2 ml-4">
                 `;
 
-                entry.meanings.forEach((meaning, index) => {
-                    html += `
-                        <div class="meaning-section">
-                            <div class="part-of-speech">${meaning.partOfSpeech}</div>
-                            ${meaning.definitions.slice(0, 3).map((def, defIndex) => `
-                                <div class="definition">
-                                    <strong>DEFINITION_${defIndex + 1}:</strong> ${def.definition}
-                                    ${def.example ? `<br><em style="color: var(--cyber-green); font-style: normal;">"${def.example}"</em>` : ''}
-                                    ${def.synonyms && def.synonyms.length > 0 ? 
-                                      `<br><strong style="color: var(--neon-purple);">SYNONYMS:</strong> ${def.synonyms.slice(0, 3).join(', ')}` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
+                meaning.definitions.forEach(def => {
+                    meaningsHTML += `
+                        <li class="pl-2">
+                            <span class="text-white font-medium">${def.definition}</span>
+                            ${def.example ? `<p class="text-sm italic text-gray-500 mt-1">Example: "${def.example}"</p>` : ''}
+                        </li>
                     `;
                 });
 
-                html += `</div>`;
+                if (meaning.synonyms && meaning.synonyms.length > 0) {
+                    meaningsHTML += `
+                        <li class="pl-2">
+                            <span class="text-sm font-bold text-quantum-green">Synonyms:</span> 
+                            <span class="text-sm text-gray-400">${meaning.synonyms.slice(0, 5).join(', ') + (meaning.synonyms.length > 5 ? '...' : '')}</span>
+                        </li>
+                    `;
+                }
+
+                meaningsHTML += `</ul></div>`;
             });
-
-            resultSection.innerHTML = html;
-            showNotification('✅ ANALYSIS_COMPLETE ▪ DATA_RETRIEVED', 'success');
-        }
-
-        function addToFavorites(word) {
-            fetch('/favorites', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ word: word })
-            })
-            .then(response => response.json())
-            .then(data => {
-                favoriteCount = data.favorites.length;
-                updateStats();
-                showNotification(`⚡ QUANTUM_CACHE_UPDATED: "${word}"`, 'success');
-            });
-        }
-
-        function updateStats() {
-            document.getElementById('searchCount').textContent = searchCount;
-            document.getElementById('favoriteCount').textContent = favoriteCount;
-            document.getElementById('historyCount').textContent = Math.min(searchCount * 2, 100) + '%';
-        }
-
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            const bgColor = type === 'error' ? 'var(--neon-pink)' : 
-                           type === 'warning' ? 'var(--neon-blue)' : 'var(--cyber-green)';
             
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 20px 25px;
-                background: rgba(0, 0, 0, 0.8);
-                color: ${bgColor};
-                border-radius: 15px;
-                backdrop-filter: blur(20px);
-                border: 1px solid ${bgColor};
-                box-shadow: 0 0 30px ${bgColor}80;
-                z-index: 10000;
-                animation: hologramIn 0.5s ease;
-                font-family: 'Orbitron', monospace;
-                font-weight: 600;
-                max-width: 400px;
-                border-left: 4px solid ${bgColor};
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
+            meaningsContainer.innerHTML = meaningsHTML;
+            
+            // Sumber URL
+            const sourceUrl = document.getElementById('source-url').querySelector('a');
+            const url = data[0].sourceUrls && data[0].sourceUrls.length > 0 ? data[0].sourceUrls[0] : '#';
+            sourceUrl.href = url;
+            sourceUrl.textContent = url.replace(/https?:\/\//, '').split('/')[0];
 
-            setTimeout(() => {
-                notification.style.animation = 'hologramIn 0.5s ease reverse forwards';
-                setTimeout(() => notification.remove(), 500);
-            }, 4000);
+            lucide.createIcons();
         }
+        
+        // --- Favorites & History Logic ---
 
-        // Event Listeners dengan efek cyber
-        document.addEventListener('DOMContentLoaded', initializeUI);
-
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchWord();
-                // Efek tekan enter
-                this.style.boxShadow = '0 0 50px var(--glow-green)';
-                setTimeout(() => {
-                    this.style.boxShadow = '';
-                }, 300);
+        /** Ambil daftar favorit dari backend */
+        async function fetchFavorites() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/favorites`);
+                const result = await response.json();
+                state.favorites = result.favorites || [];
+            } catch (error) {
+                console.error("Gagal mengambil favorit:", error);
             }
-        });
-
-        // Efek hover cyber untuk semua interactive elements
-        document.addEventListener('mousemove', function(e) {
-            const interactiveElements = document.querySelectorAll('.menu-item, .link-item, .search-btn, .word-card');
-            interactiveElements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                element.style.setProperty('--mouse-x', `${x}px`);
-                element.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // Typing effect untuk placeholder
-        const searchInput = document.getElementById('searchInput');
-        const placeholders = [
-            "⟳ QUERY_ENTER_WORD.HERE",
-            "⟳ TYPE_LINGUISTIC_DATA",
-            "⟳ INPUT_ENGLISH_TERM",
-            "⟳ ENTER_SEARCH_QUERY"
-        ];
-        let currentPlaceholder = 0;
-
-        function rotatePlaceholder() {
-            searchInput.placeholder = placeholders[currentPlaceholder];
-            currentPlaceholder = (currentPlaceholder + 1) % placeholders.length;
         }
 
-        setInterval(rotatePlaceholder, 3000);
+        /** Ambil daftar riwayat dari backend */
+        async function fetchHistory() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/history`);
+                const result = await response.json();
+                state.history = result.history || [];
+            } catch (error) {
+                console.error("Gagal mengambil riwayat:", error);
+            }
+        }
+
+        /** Toggle Favorite Status */
+        async function toggleFavorite() {
+            const word = document.getElementById('search-word').querySelector('span').textContent;
+            if (!word) return;
+
+            const isFav = state.favorites.includes(word);
+            const url = isFav ? `${API_BASE_URL}/favorites/remove` : `${API_BASE_URL}/favorites`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ word: word })
+                });
+
+                if (response.ok) {
+                    await fetchFavorites(); // Perbarui state
+                    updateFavoriteButton(word); // Perbarui tampilan tombol
+                    showNotification(`Kata '${word}' berhasil ${isFav ? 'dihapus dari' : 'ditambahkan ke'} Favorit.`, false);
+                    
+                    // Jika berada di view favorites, refresh list-nya
+                    if (state.currentView === 'favorites') {
+                        renderSecondaryView('Quantum Cache', state.favorites, 'star');
+                    }
+                } else {
+                    showNotification("Gagal memperbarui Favorit.", true);
+                }
+            } catch (error) {
+                showNotification("Gagal berkomunikasi dengan server untuk Favorit.", true);
+            }
+        }
+
+        /** Perbarui tampilan tombol favorit */
+        function updateFavoriteButton(word) {
+            const button = document.getElementById('favorite-button');
+            const icon = button.querySelector('i');
+            
+            if (state.favorites.includes(word)) {
+                // Sudah favorit
+                button.classList.remove('text-gray-500');
+                button.classList.add('text-yellow-400');
+                icon.setAttribute('data-lucide', 'star-fill');
+            } else {
+                // Belum favorit
+                button.classList.remove('text-yellow-400');
+                button.classList.add('text-gray-500');
+                icon.setAttribute('data-lucide', 'star');
+            }
+            lucide.createIcons();
+        }
+
+        // --- View Controller ---
+
+        /** Mengubah tampilan utama antara dictionary, favorites, dan history */
+        function setActiveView(viewId) {
+            state.currentView = viewId;
+            
+            // Hapus kelas aktif dari semua menu item
+            document.querySelectorAll('.menu-item').forEach(el => {
+                el.classList.remove('bg-quantum-blue/50');
+                el.classList.add('hover:bg-quantum-blue/20');
+            });
+
+            // Tambahkan kelas aktif pada menu item yang sesuai
+            const activeMenu = document.querySelector(`[data-view="${viewId}"]`);
+            if (activeMenu) {
+                activeMenu.classList.add('bg-quantum-blue/50');
+                activeMenu.classList.remove('hover:bg-quantum-blue/20');
+            }
+
+            // Tampilkan/Sembunyikan konten
+            document.getElementById('search-results-card').classList.add('hidden');
+            document.getElementById('secondary-view').classList.add('hidden');
+            
+            if (viewId === 'dictionary') {
+                // Tampilkan hasil pencarian terakhir jika ada
+                if (state.lastSearchData) {
+                    document.getElementById('search-results-card').classList.remove('hidden');
+                } else {
+                     // Tampilkan pesan kosong jika belum ada pencarian
+                     document.getElementById('secondary-view').classList.remove('hidden');
+                     // FIX: Menggunakan 'Neural Search' sebagai judul dan pesan yang lebih sesuai
+                     renderSecondaryView('Neural Search', ['Masukkan kata kunci untuk memulai SCAN neural.'], 'book-open');
+                }
+
+            } else if (viewId === 'favorites') {
+                // FIX: Menggunakan 'Quantum Cache' sebagai judul untuk Favorit
+                renderSecondaryView('Quantum Cache', state.favorites, 'star');
+            } else if (viewId === 'history') {
+                renderSecondaryView('Temporal Log', state.history, 'clock');
+            } else {
+                // Tampilan default untuk home, settings, dll.
+                renderSecondaryView(viewId.charAt(0).toUpperCase() + viewId.slice(1), ['Fitur ini sedang dalam pengembangan Quantum AI.'], 'cpu');
+            }
+        }
+
+        /** Render tampilan sekunder (History, Favorites, atau Info) */
+        function renderSecondaryView(title, data, iconName) {
+            document.getElementById('secondary-title').textContent = title;
+            document.getElementById('secondary-view').classList.remove('hidden');
+            
+            const listContainer = document.getElementById('secondary-list');
+            listContainer.innerHTML = '';
+            
+            if (data.length === 0 || (data.length === 1 && data[0].includes('Masukkan kata'))) {
+                listContainer.innerHTML = `<li class="text-gray-500 italic p-3 text-center border border-gray-700 rounded-lg">Tidak ada data di sini.</li>`;
+                return;
+            }
+
+            data.forEach((item, index) => {
+                let itemText = item;
+                let clickAction = '';
+                
+                // Hanya history dan favorites yang bisa diklik untuk pencarian ulang
+                if (state.currentView === 'favorites' || state.currentView === 'history') {
+                    itemText = `<a href="#" onclick="document.getElementById('search-input').value='${item}'; submitSearch('${item}'); return false;" class="text-quantum-green hover:underline">${item}</a>`;
+                    clickAction = `onclick="document.getElementById('search-input').value='${item}'; submitSearch('${item}'); return false;"`;
+                }
+
+                listContainer.innerHTML += `
+                    <li class="p-3 quantum-card rounded-lg flex justify-between items-center transition duration-200 hover:bg-quantum-blue/30">
+                        <div class="flex items-center text-gray-300">
+                            <i data-lucide="${iconName}" class="w-4 h-4 mr-3 text-quantum-blue"></i>
+                            <span class="font-medium">${itemText}</span>
+                        </div>
+                    </li>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        // --- Event Listeners and Initialization ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchInitialData();
+
+            // Setup Search Form Submission
+            document.getElementById('search-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const word = document.getElementById('search-input').value.trim();
+                if (word) {
+                    submitSearch(word);
+                }
+            });
+            
+            // Set default view on load
+            setActiveView('dictionary');
+        });
+        
     </script>
 </body>
 </html>
