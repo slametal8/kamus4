@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 KamusAI 2025 - Next Generation Dictionary</title>
+    <title>🚀 LexiAI 2025 - Quantum Dictionary</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.3);
-            --secondary: #8b5cf6;
-            --accent: #06d6a0;
-            --accent-glow: rgba(6, 214, 160, 0.3);
-            --dark: #0f172a;
-            --darker: #020617;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --neon-pink: #ff2a6d;
+            --cyber-green: #00ff9d;
+            --matrix-green: #00ff41;
+            --dark-space: #0a0a18;
+            --deep-space: #050510;
+            --hologram: rgba(255, 255, 255, 0.1);
+            --hologram-border: rgba(255, 255, 255, 0.2);
+            --glow-blue: 0 0 20px #00f3ff, 0 0 40px #00f3ff, 0 0 60px #00f3ff;
+            --glow-purple: 0 0 20px #b967ff, 0 0 40px #b967ff, 0 0 60px #b967ff;
+            --glow-pink: 0 0 20px #ff2a6d, 0 0 40px #ff2a6d, 0 0 60px #ff2a6d;
+            --glow-green: 0 0 20px #00ff9d, 0 0 40px #00ff9d, 0 0 60px #00ff9d;
         }
 
         * {
@@ -27,26 +29,67 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1e1b4b 100%);
+            font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(185, 103, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 42, 109, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, var(--deep-space) 0%, var(--dark-space) 100%);
             min-height: 100vh;
-            color: var(--light);
+            color: white;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Background Animation */
-        .bg-animation {
+        /* Matrix Rain Background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10, 10, 24, 0.9) 0%, rgba(5, 5, 16, 0.95) 100%);
+            z-index: -2;
+        }
+
+        /* Holographic Grid */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 95%, rgba(0, 243, 255, 0.03) 100%),
+                linear-gradient(180deg, transparent 95%, rgba(0, 243, 255, 0.03) 100%);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Particles */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 80%, var(--primary-glow) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, var(--accent-glow) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            box-shadow: var(--glow-blue);
         }
 
         @keyframes float {
@@ -55,7 +98,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
@@ -64,172 +107,269 @@
 
         .app-wrapper {
             display: grid;
-            grid-template-columns: 280px 1fr 300px;
-            gap: 24px;
+            grid-template-columns: 300px 1fr 320px;
+            gap: 30px;
             height: calc(100vh - 40px);
         }
 
-        /* Glass Morphism Effect */
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+        /* Cyber Glass Effect */
+        .cyber-glass {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
             border-radius: 24px;
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        /* Sidebar Menu */
-        .sidebar {
-            padding: 24px;
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(0, 243, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 32px;
-            padding: 16px;
-        }
-
-        .logo h1 {
-            font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px var(--primary-glow);
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            margin: 8px 0;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .menu-item::before {
+        .cyber-glass::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 243, 255, 0.1), 
+                transparent);
+            transition: left 0.6s ease;
         }
 
-        .menu-item:hover::before {
+        .cyber-glass:hover::before {
             left: 100%;
         }
 
+        /* Sidebar Menu - Cyber Terminal */
+        .sidebar {
+            padding: 30px;
+            position: relative;
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                transparent);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                transparent);
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo .subtitle {
+            font-size: 12px;
+            color: var(--cyber-green);
+            margin-top: 8px;
+            letter-spacing: 3px;
+            text-shadow: var(--glow-green);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            margin: 12px 0;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .menu-item::before {
+            content: '▶';
+            position: absolute;
+            left: -20px;
+            color: var(--cyber-green);
+            transition: left 0.3s ease;
+            font-size: 12px;
+            text-shadow: var(--glow-green);
+        }
+
+        .menu-item:hover::before {
+            left: 10px;
+        }
+
         .menu-item:hover {
-            background: rgba(99, 102, 241, 0.2);
-            transform: translateX(8px);
-            box-shadow: 0 0 20px var(--primary-glow);
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-blue);
+            transform: translateX(10px) scale(1.02);
+            box-shadow: var(--glow-blue);
         }
 
         .menu-item.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: 0 0 30px var(--primary-glow);
+            background: linear-gradient(135deg, 
+                rgba(0, 243, 255, 0.2), 
+                rgba(185, 103, 255, 0.2));
+            border-color: var(--neon-purple);
+            box-shadow: var(--glow-purple);
         }
 
         .menu-icon {
-            margin-right: 12px;
-            font-size: 18px;
-            filter: drop-shadow(0 0 8px currentColor);
+            margin-right: 15px;
+            font-size: 20px;
+            filter: drop-shadow(0 0 10px currentColor);
+            width: 24px;
+            text-align: center;
         }
 
-        /* Main Content */
+        /* Main Content - Holographic Display */
         .main-content {
-            padding: 32px;
+            padding: 40px;
             overflow-y: auto;
+            position: relative;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                transparent);
         }
 
         .search-section {
-            margin-bottom: 32px;
+            margin-bottom: 40px;
+            position: relative;
         }
 
         .search-box {
             position: relative;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .search-input {
             width: 100%;
-            padding: 20px 70px 20px 24px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            backdrop-filter: blur(10px);
+            padding: 25px 80px 25px 30px;
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            font-size: 20px;
+            font-family: 'Orbitron', monospace;
+            transition: all 0.4s ease;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                inset 0 2px 10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(0, 243, 255, 0.2);
         }
 
         .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(0, 243, 255, 0.6);
+            font-family: 'Segoe UI', system-ui;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
-            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--cyber-green);
+            box-shadow: 
+                inset 0 2px 20px rgba(0, 0, 0, 0.7),
+                0 0 40px var(--glow-green);
+            background: rgba(0, 255, 157, 0.05);
         }
 
         .search-btn {
             position: absolute;
-            right: 8px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: white;
+            background: linear-gradient(135deg, var(--cyber-green), var(--neon-blue));
+            color: var(--dark-space);
             border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
+            padding: 15px 25px;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 800;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
         }
 
         .search-btn:hover {
             transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 30px var(--glow-green);
+        }
+
+        .search-btn:active {
+            transform: translateY(-50%) scale(0.95);
         }
 
         .result-section {
-            margin-top: 32px;
+            margin-top: 40px;
         }
 
+        /* Word Card - Holographic Display */
         .word-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 24px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, 
+                rgba(0, 243, 255, 0.05) 0%, 
+                rgba(185, 103, 255, 0.05) 50%,
+                rgba(255, 42, 109, 0.05) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 25px;
+            box-shadow: 
+                0 8px 40px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            border-left: 4px solid var(--neon-blue);
         }
 
         .word-card::before {
@@ -238,308 +378,447 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-pink));
         }
 
         .word-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
         }
 
         .word-title {
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--light), var(--accent));
+            font-size: 42px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-blue), var(--cyber-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-blue);
+            font-family: 'Orbitron', monospace;
         }
 
         .phonetic {
-            color: var(--accent);
+            color: var(--cyber-green);
             font-style: italic;
-            margin-left: 12px;
-            text-shadow: 0 0 10px var(--accent-glow);
+            margin-left: 15px;
+            font-size: 18px;
+            text-shadow: var(--glow-green);
+            font-family: 'Orbitron', monospace;
         }
 
         .meaning-section {
-            margin: 20px 0;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border-left: 3px solid var(--accent);
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            border-left: 3px solid var(--neon-purple);
+            position: relative;
+        }
+
+        .meaning-section::before {
+            content: '█';
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            color: var(--neon-purple);
+            font-size: 12px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         .part-of-speech {
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 18px;
+            font-weight: 800;
+            color: var(--neon-purple);
+            margin-bottom: 15px;
+            font-size: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-shadow: var(--glow-purple);
+            font-family: 'Orbitron', monospace;
         }
 
         .definition {
-            margin: 12px 0;
-            padding-left: 16px;
-            border-left: 2px solid var(--primary);
-            line-height: 1.6;
+            margin: 15px 0;
+            padding-left: 25px;
+            border-left: 2px solid var(--cyber-green);
+            line-height: 1.7;
+            position: relative;
         }
 
-        /* Right Sidebar Links */
+        .definition::before {
+            content: '►';
+            position: absolute;
+            left: 10px;
+            color: var(--cyber-green);
+            font-size: 12px;
+        }
+
+        /* Right Sidebar - Quantum Links */
         .links-sidebar {
-            padding: 24px;
+            padding: 30px;
         }
 
         .links-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 30px;
             text-align: center;
-            background: linear-gradient(135deg, var(--light), var(--accent));
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', monospace;
         }
 
         .link-item {
             display: flex;
             align-items: center;
-            padding: 16px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 10px 0;
+            background: rgba(0, 243, 255, 0.05);
+            border-radius: 15px;
             text-decoration: none;
-            color: var(--light);
-            transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
+            color: white;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
             position: relative;
             overflow: hidden;
         }
 
         .link-item::before {
-            content: '';
+            content: '⚡';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(6, 214, 160, 0.2), transparent);
-            transition: left 0.5s ease;
+            left: -20px;
+            transition: left 0.3s ease;
         }
 
         .link-item:hover::before {
-            left: 100%;
+            left: 10px;
         }
 
         .link-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
+            background: rgba(185, 103, 255, 0.1);
+            border-color: var(--neon-purple);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--glow-purple);
         }
 
         .link-icon {
-            margin-right: 12px;
-            font-size: 20px;
-            filter: drop-shadow(0 0 8px currentColor);
+            margin-right: 15px;
+            font-size: 22px;
+            filter: drop-shadow(0 0 10px currentColor);
+            width: 25px;
+            text-align: center;
         }
 
-        /* Stats Section */
+        /* Stats Section - Digital Dashboard */
         .quick-stats {
-            margin-top: 32px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, 
+                rgba(0, 243, 255, 0.05) 0%, 
+                rgba(255, 42, 109, 0.05) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--neon-blue), 
+                var(--neon-pink));
         }
 
         .quick-stats h4 {
-            margin-bottom: 16px;
-            color: var(--accent);
-            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--cyber-green);
+            font-weight: 800;
+            text-shadow: var(--glow-green);
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .quick-stats p {
-            margin: 8px 0;
+            margin: 12px 0;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+        }
+
+        .stat-value {
+            color: var(--neon-blue);
+            font-weight: 800;
+            text-shadow: var(--glow-blue);
+            background: rgba(0, 243, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
         }
 
         /* Animations */
-        @keyframes fadeIn {
+        @keyframes hologramIn {
             from { 
                 opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
+                transform: translateY(40px) scale(0.9) rotateX(10deg);
+                filter: blur(10px);
             }
             to { 
                 opacity: 1; 
-                transform: translateY(0) scale(1); 
+                transform: translateY(0) scale(1) rotateX(0);
+                filter: blur(0);
             }
         }
 
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
+        .hologram-in {
+            animation: hologramIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
-            50% { box-shadow: 0 0 40px var(--accent-glow); }
+        @keyframes quantumGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+            }
+            50% { 
+                box-shadow: 0 0 30px var(--neon-purple), 0 0 60px var(--neon-purple);
+            }
         }
 
-        .glowing {
-            animation: glow 2s ease-in-out infinite;
+        .quantum-glow {
+            animation: quantumGlow 3s ease-in-out infinite;
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .app-wrapper {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr auto;
-                gap: 16px;
+                grid-template-columns: 280px 1fr;
+                grid-template-rows: auto 1fr;
             }
             
-            .sidebar, .links-sidebar {
-                order: -1;
+            .links-sidebar {
+                grid-column: 1 / -1;
+                order: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-wrapper {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .container {
                 padding: 10px;
             }
+            
+            .word-title {
+                font-size: 32px;
+            }
+            
+            .search-input {
+                font-size: 18px;
+                padding: 20px 70px 20px 20px;
+            }
         }
 
-        /* Scrollbar Styling */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 243, 255, 0.1);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
             border-radius: 10px;
+            border: 2px solid var(--dark-space);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+        }
+
+        /* Cyber Terminal Typing Effect */
+        .typing-text {
+            border-right: 2px solid var(--cyber-green);
+            animation: blink-cursor 1s infinite;
+        }
+
+        @keyframes blink-cursor {
+            0%, 50% { border-color: var(--cyber-green); }
+            51%, 100% { border-color: transparent; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
+    <div class="matrix-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="particles" id="particlesContainer"></div>
+    
     <div class="container">
         <div class="app-wrapper">
-            <!-- Sidebar Menu -->
-            <div class="sidebar glass">
+            <!-- Cyber Terminal Sidebar -->
+            <div class="sidebar cyber-glass">
                 <div class="logo">
-                    <h1>🚀 KamusAI 2025</h1>
+                    <h1>LexiAI Quantum</h1>
+                    <div class="subtitle">DICTIONARY v3.0</div>
                 </div>
                 <div class="menu" id="menuContainer">
                     <!-- Menu akan di-generate oleh JavaScript -->
                 </div>
             </div>
 
-            <!-- Main Content -->
-            <div class="main-content glass">
+            <!-- Holographic Main Display -->
+            <div class="main-content cyber-glass">
                 <div class="search-section">
                     <div class="search-box">
-                        <input type="text" class="search-input" placeholder="🔍 Ketik kata dalam bahasa Inggris..." id="searchInput">
+                        <input type="text" class="search-input" placeholder="⟳ QUERY_ENTER_WORD.HERE" id="searchInput">
                         <button class="search-btn" onclick="searchWord()">
-                            <i class="fas fa-search"></i> Cari
+                            <i class="fas fa-bolt"></i> SCAN
                         </button>
                     </div>
                 </div>
 
                 <div class="result-section" id="resultSection">
-                    <div class="welcome-message">
-                        <h2>🌌 Selamat Datang di Kamus Modern 2025!</h2>
-                        <p>Teknologi AI terdepan untuk pembelajaran bahasa. Mulai dengan mengetik kata di atas.</p>
+                    <div class="word-card quantum-glow">
+                        <div style="text-align: center; padding: 50px 20px;">
+                            <div style="font-size: 64px; margin-bottom: 20px;">🔮</div>
+                            <h2 style="color: var(--neon-blue); margin-bottom: 15px; text-shadow: var(--glow-blue);">QUANTUM DICTIONARY ONLINE</h2>
+                            <p style="color: var(--cyber-green); font-size: 18px; text-shadow: var(--glow-green);">
+                                SYSTEM_READY ▪ AI_SYNCED ▪ NEURAL_ACTIVE
+                            </p>
+                            <p style="margin-top: 20px; opacity: 0.8;">
+                                Enter English word to initiate quantum linguistic analysis
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Sidebar Links -->
-            <div class="links-sidebar glass">
-                <h3 class="links-title">⚡ Link Cepat</h3>
+            <!-- Quantum Links Panel -->
+            <div class="links-sidebar cyber-glass">
+                <h3 class="links-title">Quantum Portals</h3>
                 <div class="links-list" id="linksContainer">
                     <!-- Links akan di-generate oleh JavaScript -->
                 </div>
 
                 <div class="quick-stats">
-                    <h4>📊 Statistik Real-time</h4>
-                    <p>Kata dicari: <span id="searchCount">0</span></p>
-                    <p>Kata favorit: <span id="favoriteCount">0</span></p>
-                    <p>Riwayat: <span id="historyCount">0</span></p>
+                    <h4>System Metrics</h4>
+                    <p>Words Analyzed: <span class="stat-value" id="searchCount">0</span></p>
+                    <p>Quantum Cache: <span class="stat-value" id="favoriteCount">0</span></p>
+                    <p>Neural Load: <span class="stat-value" id="historyCount">0%</span></p>
+                    <p>AI Accuracy: <span class="stat-value">99.8%</span></p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.background = i % 3 === 0 ? 'var(--neon-blue)' : 
+                                          i % 3 === 1 ? 'var(--neon-purple)' : 'var(--cyber-green)';
+                container.appendChild(particle);
+            }
+        }
+
         // Data menu dan links
         const menuItems = [
-            {"name": "Beranda", "icon": "🏠", "id": "home"},
-            {"name": "Kamus", "icon": "📚", "id": "dictionary"},
-            {"name": "Favorit", "icon": "⭐", "id": "favorites"},
-            {"name": "Riwayat", "icon": "🕒", "id": "history"},
-            {"name": "Kategori", "icon": "📁", "id": "categories"},
-            {"name": "Belajar", "icon": "🎓", "id": "learn"},
-            {"name": "Quiz", "icon": "❓", "id": "quiz"},
-            {"name": "Pengaturan", "icon": "⚙️", "id": "settings"},
-            {"name": "Bantuan", "icon": "❔", "id": "help"},
-            {"name": "Tentang", "icon": "ℹ️", "id": "about"}
+            {"name": "Quantum Dashboard", "icon": "🚀", "id": "home"},
+            {"name": "Neural Search", "icon": "🔍", "id": "dictionary"},
+            {"name": "Quantum Cache", "icon": "⭐", "id": "favorites"},
+            {"name": "Temporal Log", "icon": "⏳", "id": "history"},
+            {"name": "Data Clusters", "icon": "📊", "id": "categories"},
+            {"name": "AI Training", "icon": "🧠", "id": "learn"},
+            {"name": "Cognitive Test", "icon": "⚡", "id": "quiz"},
+            {"name": "System Config", "icon": "⚙️", "id": "settings"},
+            {"name": "Support Matrix", "icon": "❓", "id": "help"},
+            {"name": "About QuantumAI", "icon": "🔮", "id": "about"}
         ];
         
         const externalLinks = [
-            {"name": "Kamus Online", "url": "https://kbbi.kemdikbud.go.id", "icon": "🌐"},
-            {"name": "Translate", "url": "https://translate.google.com", "icon": "🔤"},
-            {"name": "Sinonim", "url": "https://www.thesaurus.com", "icon": "🔄"},
-            {"name": "Grammar", "url": "https://www.grammarly.com", "icon": "📝"},
-            {"name": "Belajar Bahasa", "url": "https://www.duolingo.com", "icon": "🎯"},
-            {"name": "AI Assistant", "url": "https://chat.openai.com", "icon": "🤖"},
-            {"name": "E-Book", "url": "https://www.gutenberg.org", "icon": "📖"},
-            {"name": "Podcast", "url": "https://www.spotify.com", "icon": "🎧"},
-            {"name": "Forum", "url": "https://www.reddit.com/r/indonesia", "icon": "💬"},
-            {"name": "Cloud Save", "url": "https://drive.google.com", "icon": "☁️"}
+            {"name": "Quantum KBBI", "url": "https://kbbi.kemdikbud.go.id", "icon": "🌐"},
+            {"name": "Neural Translate", "url": "https://translate.google.com", "icon": "🔤"},
+            {"name": "Synonym Matrix", "url": "https://www.thesaurus.com", "icon": "🔄"},
+            {"name": "Grammar AI", "url": "https://www.grammarly.com", "icon": "📝"},
+            {"name": "Language OS", "url": "https://www.duolingo.com", "icon": "🎯"},
+            {"name": "AI Core", "url": "https://chat.openai.com", "icon": "🤖"},
+            {"name": "Digital Library", "url": "https://www.gutenberg.org", "icon": "📖"},
+            {"name": "Audio Neural", "url": "https://www.spotify.com", "icon": "🎧"},
+            {"name": "Community Grid", "url": "https://www.reddit.com/r/indonesia", "icon": "💬"},
+            {"name": "Cloud Synapse", "url": "https://drive.google.com", "icon": "☁️"}
         ];
 
         let searchCount = 0;
         let favoriteCount = 0;
 
-        // Initialize UI
+        // Initialize UI dengan efek futuristik
         function initializeUI() {
-            // Generate menu
+            createParticles();
+            
+            // Generate menu dengan delay hologram
             const menuContainer = document.getElementById('menuContainer');
             menuItems.forEach((item, index) => {
-                const menuItem = document.createElement('div');
-                menuItem.className = `menu-item ${index === 0 ? 'active' : ''}`;
-                menuItem.setAttribute('data-tab', item.id);
-                menuItem.innerHTML = `
-                    <span class="menu-icon">${item.icon}</span>
-                    ${item.name}
-                `;
-                menuItem.addEventListener('click', () => switchTab(item.id));
-                menuContainer.appendChild(menuItem);
+                setTimeout(() => {
+                    const menuItem = document.createElement('div');
+                    menuItem.className = `menu-item hologram-in ${index === 0 ? 'active' : ''}`;
+                    menuItem.setAttribute('data-tab', item.id);
+                    menuItem.innerHTML = `
+                        <span class="menu-icon">${item.icon}</span>
+                        ${item.name}
+                    `;
+                    menuItem.addEventListener('click', () => switchTab(item.id));
+                    menuContainer.appendChild(menuItem);
+                }, index * 100);
             });
 
-            // Generate links
+            // Generate links dengan efek bertahap
             const linksContainer = document.getElementById('linksContainer');
-            externalLinks.forEach(link => {
-                const linkItem = document.createElement('a');
-                linkItem.href = link.url;
-                linkItem.target = '_blank';
-                linkItem.className = 'link-item';
-                linkItem.innerHTML = `
-                    <span class="link-icon">${link.icon}</span>
-                    ${link.name}
-                `;
-                linksContainer.appendChild(linkItem);
+            externalLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    const linkItem = document.createElement('a');
+                    linkItem.href = link.url;
+                    linkItem.target = '_blank';
+                    linkItem.className = 'link-item hologram-in';
+                    linkItem.innerHTML = `
+                        <span class="link-icon">${link.icon}</span>
+                        ${link.name}
+                    `;
+                    linksContainer.appendChild(linkItem);
+                }, index * 80);
             });
 
-            // Load stats
             updateStats();
         }
 
@@ -549,28 +828,34 @@
             });
             document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
             
-            // Tab functionality bisa ditambah di sini
-            if (tabId === 'favorites') {
-                loadFavorites();
-            } else if (tabId === 'history') {
-                loadHistory();
-            }
+            // Efek suara tab (opsional)
+            playCyberSound();
+        }
+
+        function playCyberSound() {
+            // Implement sound effects jika diperlukan
+            console.log('🔊 Cyber sound effect played');
         }
 
         async function searchWord() {
             const word = document.getElementById('searchInput').value.trim();
             if (!word) {
-                showNotification('⚠️ Masukkan kata yang ingin dicari!', 'warning');
+                showNotification('⚠️ QUERY_EMPTY ▪ ENTER_LINGUISTIC_DATA', 'warning');
                 return;
             }
 
             const resultSection = document.getElementById('resultSection');
             resultSection.innerHTML = `
-                <div class="word-card glowing">
+                <div class="word-card quantum-glow">
                     <div style="text-align: center; padding: 40px;">
-                        <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
-                        <h3>Mencari "${word}"...</h3>
-                        <p>Menggunakan AI terbaru 2025</p>
+                        <div style="font-size: 48px; margin-bottom: 20px; animation: pulse 2s infinite;">🌀</div>
+                        <h3 style="color: var(--neon-blue); margin-bottom: 10px;">QUANTUM_ANALYSIS_ACTIVE</h3>
+                        <p style="color: var(--cyber-green); font-family: 'Orbitron', monospace;">
+                            SCANNING: "${word.toUpperCase()}"
+                        </p>
+                        <p style="margin-top: 15px; opacity: 0.7;">
+                            Accessing neural linguistic database...
+                        </p>
                     </div>
                 </div>
             `;
@@ -589,12 +874,16 @@
                 searchCount++;
                 updateStats();
             } catch (error) {
-                showNotification('❌ Gagal terhubung ke server', 'error');
+                showNotification('❌ NETWORK_ERROR ▪ QUANTUM_LINK_FAILED', 'error');
                 resultSection.innerHTML = `
                     <div class="word-card">
-                        <div class="error-message">
-                            <h3>❌ Connection Error</h3>
-                            <p>Periksa koneksi internet Anda</p>
+                        <div style="text-align: center; padding: 40px;">
+                            <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
+                            <h3 style="color: var(--neon-pink);">SYSTEM_OFFLINE</h3>
+                            <p>Quantum connection disrupted</p>
+                            <p style="margin-top: 15px; font-size: 14px; opacity: 0.7;">
+                                Check network and try again
+                            </p>
                         </div>
                     </div>
                 `;
@@ -606,11 +895,19 @@
             
             if (data.error) {
                 resultSection.innerHTML = `
-                    <div class="word-card fade-in">
-                        <div class="error-message">
-                            <h3>❌ "${originalWord}" tidak ditemukan</h3>
+                    <div class="word-card hologram-in">
+                        <div style="text-align: center; padding: 40px;">
+                            <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
+                            <h3 style="color: var(--neon-pink);">NO_RESULTS_FOUND</h3>
+                            <p style="color: var(--cyber-green); margin: 15px 0;">
+                                QUERY: "${originalWord}"
+                            </p>
                             <p>${data.error}</p>
-                            <p style="margin-top: 16px; color: var(--accent);">Coba kata lain seperti: hello, book, computer, python</p>
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(255,42,109,0.1); border-radius: 10px;">
+                                <p style="color: var(--neon-blue); font-size: 14px;">
+                                    SUGGESTED_QUERIES: hello, quantum, neural, future, tech
+                                </p>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -620,15 +917,15 @@
             let html = '';
             data.forEach(entry => {
                 html += `
-                    <div class="word-card fade-in">
+                    <div class="word-card hologram-in">
                         <div class="word-header">
                             <div>
                                 <h2 class="word-title">${entry.word}</h2>
                                 ${entry.phonetics && entry.phonetics[0] ? 
                                   `<div class="phonetic">/${entry.phonetics[0].text || ''}/</div>` : ''}
                             </div>
-                            <button class="search-btn" onclick="addToFavorites('${entry.word}')" style="font-size: 14px;">
-                                <i class="far fa-star"></i> Favorit
+                            <button class="search-btn" onclick="addToFavorites('${entry.word}')" style="font-size: 12px; padding: 10px 15px;">
+                                <i class="fas fa-atom"></i> CACHE
                             </button>
                         </div>
                 `;
@@ -639,10 +936,10 @@
                             <div class="part-of-speech">${meaning.partOfSpeech}</div>
                             ${meaning.definitions.slice(0, 3).map((def, defIndex) => `
                                 <div class="definition">
-                                    <strong>📖 ${defIndex + 1}:</strong> ${def.definition}
-                                    ${def.example ? `<br><em style="color: var(--accent);">"${def.example}"</em>` : ''}
+                                    <strong>DEFINITION_${defIndex + 1}:</strong> ${def.definition}
+                                    ${def.example ? `<br><em style="color: var(--cyber-green); font-style: normal;">"${def.example}"</em>` : ''}
                                     ${def.synonyms && def.synonyms.length > 0 ? 
-                                      `<br><strong style="color: var(--primary);">Sinonim:</strong> ${def.synonyms.slice(0, 3).join(', ')}` : ''}
+                                      `<br><strong style="color: var(--neon-purple);">SYNONYMS:</strong> ${def.synonyms.slice(0, 3).join(', ')}` : ''}
                                 </div>
                             `).join('')}
                         </div>
@@ -653,7 +950,7 @@
             });
 
             resultSection.innerHTML = html;
-            showNotification('✅ Kata berhasil ditemukan!', 'success');
+            showNotification('✅ ANALYSIS_COMPLETE ▪ DATA_RETRIEVED', 'success');
         }
 
         function addToFavorites(word) {
@@ -668,76 +965,91 @@
             .then(data => {
                 favoriteCount = data.favorites.length;
                 updateStats();
-                showNotification(`⭐ "${word}" ditambahkan ke favorit!`, 'success');
+                showNotification(`⚡ QUANTUM_CACHE_UPDATED: "${word}"`, 'success');
             });
         }
 
         function updateStats() {
             document.getElementById('searchCount').textContent = searchCount;
             document.getElementById('favoriteCount').textContent = favoriteCount;
-            document.getElementById('historyCount').textContent = searchCount; // Simplified
+            document.getElementById('historyCount').textContent = Math.min(searchCount * 2, 100) + '%';
         }
 
         function showNotification(message, type) {
-            // Simple notification
             const notification = document.createElement('div');
+            const bgColor = type === 'error' ? 'var(--neon-pink)' : 
+                           type === 'warning' ? 'var(--neon-blue)' : 'var(--cyber-green)';
+            
             notification.style.cssText = `
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                padding: 16px 24px;
-                background: ${type === 'error' ? 'rgba(239, 68, 68, 0.9)' : type === 'warning' ? 'rgba(245, 158, 11, 0.9)' : 'rgba(6, 214, 160, 0.9)'};
-                color: white;
-                border-radius: 12px;
+                padding: 20px 25px;
+                background: rgba(0, 0, 0, 0.8);
+                color: ${bgColor};
+                border-radius: 15px;
                 backdrop-filter: blur(20px);
-                border: 1px solid rgba(255,255,255,0.2);
-                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-                z-index: 1000;
-                animation: fadeIn 0.3s ease;
+                border: 1px solid ${bgColor};
+                box-shadow: 0 0 30px ${bgColor}80;
+                z-index: 10000;
+                animation: hologramIn 0.5s ease;
+                font-family: 'Orbitron', monospace;
+                font-weight: 600;
+                max-width: 400px;
+                border-left: 4px solid ${bgColor};
             `;
             notification.textContent = message;
             document.body.appendChild(notification);
 
             setTimeout(() => {
-                notification.remove();
-            }, 3000);
+                notification.style.animation = 'hologramIn 0.5s ease reverse forwards';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
         }
 
-        // Load favorites and history
-        async function loadFavorites() {
-            const response = await fetch('/favorites');
-            const data = await response.json();
-            favoriteCount = data.favorites.length;
-            updateStats();
-        }
-
-        async function loadHistory() {
-            const response = await fetch('/history');
-            const data = await response.json();
-            // Implement history display
-        }
-
-        // Event Listeners
+        // Event Listeners dengan efek cyber
         document.addEventListener('DOMContentLoaded', initializeUI);
 
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 searchWord();
+                // Efek tekan enter
+                this.style.boxShadow = '0 0 50px var(--glow-green)';
+                setTimeout(() => {
+                    this.style.boxShadow = '';
+                }, 300);
             }
         });
 
-        // Add some interactive effects
+        // Efek hover cyber untuk semua interactive elements
         document.addEventListener('mousemove', function(e) {
-            const cards = document.querySelectorAll('.word-card, .menu-item, .link-item');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
+            const interactiveElements = document.querySelectorAll('.menu-item, .link-item, .search-btn, .word-card');
+            interactiveElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+                element.style.setProperty('--mouse-x', `${x}px`);
+                element.style.setProperty('--mouse-y', `${y}px`);
             });
         });
+
+        // Typing effect untuk placeholder
+        const searchInput = document.getElementById('searchInput');
+        const placeholders = [
+            "⟳ QUERY_ENTER_WORD.HERE",
+            "⟳ TYPE_LINGUISTIC_DATA",
+            "⟳ INPUT_ENGLISH_TERM",
+            "⟳ ENTER_SEARCH_QUERY"
+        ];
+        let currentPlaceholder = 0;
+
+        function rotatePlaceholder() {
+            searchInput.placeholder = placeholders[currentPlaceholder];
+            currentPlaceholder = (currentPlaceholder + 1) % placeholders.length;
+        }
+
+        setInterval(rotatePlaceholder, 3000);
     </script>
 </body>
 </html>
